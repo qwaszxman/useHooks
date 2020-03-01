@@ -1,13 +1,29 @@
-## IMPORTANT --> { Hooks } = React, 
-{ ECMASCRIPT, 
-  spreadOperator : { ... },
-                                } = JavaScript,
+## IMPORTANT -->  * symbols --> *something 'from comments' maps to *something 'from the next code snippet'
+## --> *** symbols --> these assertions are always true
+{ Hooks } = React, 
+{ ECMASCRIPT, spreadOperator : { ... },  } = JavaScript,
                                 
   Redux, 
 
 
 
 } 
+ 
+
+## BEST PRACTICES 
+//*someFunction is a function 'It does something' it. it takes *(someProps) 'some stuff, data'  and passes it into the *=> {
+const someFunction = (someProps) => {
+   //here we declare a *const object ' The values cant change once declared' and read the values from the *someProps object
+   //***1someProps.prop.someSubProps = { name : "fred", age : 10, freinds : ARRAY } 
+   //***1someSubsProps = someProps.prop.someSubProps
+   //someOtherFunction = (someOtherFunctionProps, someOtherShit) => { 'Its a function which takes some stuff and does something
+   
+   const { prop1 : { someSubProps }, someOtherFunction, props2 : { moreProps } , ...rest  } = someProps
+   if (someOtherFunction) { // if someOtherFunction is a function then try and run it
+      someOtherFunction() // run someOtherFunction
+   }
+   return { someSubProps, }
+}
 
 ## New System Pre Requesites - 
 
