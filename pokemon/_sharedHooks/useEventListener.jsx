@@ -26,7 +26,7 @@ function App () {
 }
 
 // Hook
-function useEventListener (eventName, handler, element = window){
+function useEventListener (eventName, handler, element = window) {
   // Create a ref that stores handler
   const savedHandler = useRef();
 
@@ -58,4 +58,4 @@ function useEventListener (eventName, handler, element = window){
     },
     [eventName, element] // Re-run if eventName or element changes
   );
-};
+}

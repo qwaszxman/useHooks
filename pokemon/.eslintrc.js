@@ -26,6 +26,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'constructor-super': 'warn',
     'valid-typeof': 'warn',
+    'eol-last': ['error', 'never'],
     semi: [1, 'always']
   }
 }
