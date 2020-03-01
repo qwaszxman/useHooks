@@ -30,6 +30,5 @@ module.exports = {
     "no-unused-vars": "warn",
     "constructor-super": "warn",
     "valid-typeof": "warn",
-    "no-extra-semi":"error",
   }
 }
