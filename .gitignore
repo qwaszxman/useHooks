@@ -1,7 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-node_modules/
+touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached node_modules ; git status
 
 # production
 build/
