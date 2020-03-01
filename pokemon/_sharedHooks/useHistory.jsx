@@ -1,7 +1,7 @@
 import { useReducer, useCallback } from 'react';
 
 // Usage
-function App() {
+function App () {
   const { state, set, undo, redo, clear, canUndo, canRedo } = useHistory({});
 
   return (
