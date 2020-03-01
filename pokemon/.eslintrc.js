@@ -22,7 +22,7 @@ module.exports = {
   plugins: [
     'react'
   ],
-  "rules": {
+  rules: {
     "no-const-assign": "warn",
     "no-this-before-super": "warn",
     "no-undef": "warn",
@@ -31,6 +31,5 @@ module.exports = {
     "constructor-super": "warn",
     "valid-typeof": "warn",
     "no-extra-semi":"error",
-    
-}
+  }
 }
