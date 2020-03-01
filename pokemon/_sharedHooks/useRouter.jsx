@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useParams, useLocation, useHistory, useRouteMatch } from 'react-router-dom';
 import queryString from 'query-string';
 
@@ -10,7 +11,7 @@ function MyComponent () {
   console.log(router.query.postId);
 
   // Get current pathname
-  console.log(router.pathname)
+  console.log(router.pathname);
 
   // Navigate with with router.push()
   return (
@@ -19,7 +20,7 @@ function MyComponent () {
 }
 
 // Hook
-export function useRouter() {
+export function useRouter () {
   const params = useParams();
   const location = useLocation();
   const history = useHistory();

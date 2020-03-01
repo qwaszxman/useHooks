@@ -58,5 +58,4 @@ const useAsync = (asyncFunction, immediate = true) => {
   }, [execute, immediate]);
 
   return { execute, pending, value, error };
-
 };
