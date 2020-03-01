@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    semi: [1, 'always'],
     'no-const-assign': 'warn',
     'no-this-before-super': 'warn',
     'no-undef': 'warn',
@@ -27,6 +28,6 @@ module.exports = {
     'constructor-super': 'warn',
     'valid-typeof': 'warn',
     'eol-last': ['error', 'never'],
-    semi: [1, 'always']
+    "no-extra-semi":"error",
   }
 }
