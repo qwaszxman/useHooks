@@ -11,42 +11,40 @@ const initialState = {
 }
 
 const PageActions = () => {
-  const setError = (data) => { return { type: "error", data: data } }
-  const reset = (data) => { return { type: "reset", data: data } }
-  const update = (data) => { return { type: "update", data: data } }
+  const setError = (data) => { return { type: 'error', data: data } }
+  const reset = (data) => { return { type: 'reset', data: data } }
+  const update = (data) => { return { type: 'update', data: data } }
   return {
     setError,
     reset,
-    update,
+    update
   }
-
 }
 
 const PageReducer = (state, action) => {
   switch (action.type) {
-    case "error":
-      return state;
+    case 'error':
+      return state
 
-    case "update":
-      return state;
+    case 'update':
+      return state
 
-      case "error":
-        default:
+    case 'error':
+    default:
 
-      return state;
+      return state
   }
 }
 
 const Page = (props) => {
-
-  const [state, dispatch] = useReducer(PageReducer, initialState);
+  const [state, dispatch] = useReducer(PageReducer, initialState)
 
   useEffect(() => {
     props.getPokemons().then(action => {
       if (action.error) {
-        dispatch(PageActions.setError(acion.payload.message))
+        dispatch(PageActions.setError(action.payload.message))
       }
-        
+
       const searchString = hardtack.get('searchString')
       const { pokemonsById, pokemonsAllIds } = props
 
@@ -60,14 +58,14 @@ const Page = (props) => {
         return pokemon.name.includes(searchString)
       })
 
-      dispatch(PageActions.update({ids : pokemonsIds, searchString : searchString}))
+      dispatch(PageActions.update({ ids: pokemonsIds, searchString: searchString }))
     })
 
     ga.pageview(window.location.pathname + window.location.search)
-  });
+  })
 
   const handleSearch = e => {
-    const { target, currentTarget } = e;
+    const { target, currentTarget } = e
 
     const value = currentTarget.value.toLowerCase().trim()
     const { pokemonsById, pokemonsAllIds } = props
@@ -78,9 +76,8 @@ const Page = (props) => {
 
     if (value === '') {
       dispatch(PageActions.update)
-      
-      dispatch(PageActions.update({ids : pokemonsIds, searchString : searchString}))
 
+      dispatch(PageActions.update({ ids: pokemonsIds, searchString: searchString }))
     }
 
     const pokemonsIds = pokemonsAllIds.filter(pokemonId => {
@@ -89,9 +86,8 @@ const Page = (props) => {
       return pokemon.name.includes(value)
     })
 
-    dispatch(PageActions.update({ids : pokemonsIds, searchString : value}))
+    dispatch(PageActions.update({ ids: pokemonsIds, searchString: value }))
   }
-
 
   const { searchString, pokemonsIds, error } = state
   const { isFetched } = props
@@ -113,8 +109,8 @@ const Page = (props) => {
       {isFetched ? (
         <p>Loading...</p>
       ) : (
-          <ul className="pokemons">{pokemons}</ul>
-        )}
+        <ul className="pokemons">{pokemons}</ul>
+      )}
     </div>
   )
 }
