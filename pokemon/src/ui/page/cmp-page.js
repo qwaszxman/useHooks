@@ -5,10 +5,12 @@ import Search from '../search/cmp-search'
 import ga from '../../utils/ga'
 
 class Page extends Component {
-  state = {
-    searchString: '',
-    pokemonsIds: [],
-    error: null
+  constructor(props) {
+    this.state = {
+      searchString: '',
+      pokemonsIds: [],
+      error: null
+    }
   }
 
   componentDidMount() {
