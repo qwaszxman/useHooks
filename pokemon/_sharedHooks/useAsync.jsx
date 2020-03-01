@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 // Usage
-function App() {
+function App () {
   const { execute, pending, value, error } = useAsync(myFunction, false);
 
   return (
@@ -58,4 +58,5 @@ const useAsync = (asyncFunction, immediate = true) => {
   }, [execute, immediate]);
 
   return { execute, pending, value, error };
+
 };
