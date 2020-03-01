@@ -6,12 +6,9 @@ git fetch origin
 git checkout -b addPokemon origin/addPokemon
 git merge master
 
-git checkout master
-git merge --squash bugfix
-git commit
+git merge --no-ff --squash bugfix
 
-git checkout master
-git merge --no-ff addPokemon
+git commit
 git push origin master 
 
 ## TITLE - [Live Demo](https://)
