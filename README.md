@@ -1,10 +1,40 @@
-## Basic Overview - 
+## IMPORTANT --> { Hooks } = React, 
+{ ECMASCRIPT, 
+  spreadOperator : { ... },
+                                } = JavaScript,
+                                
+  Redux, 
+
+
+
+} 
+
+## New System Pre Requesites - 
+
+node.js
+vs code
+git
+
+vs code -- extensions
+eslint, indent-rainbow?, Debugger chrome, Error Lens, { intellisense } = npm, { History, Lens } = Git, 
+CODE SNIPPETS!! --> Anything with a install count 1 mil + and you're interested in,
+Recommendations --> HTML 5 Abusaid, { JavaScript(ES6), Reactjs } = karypidis, ES7 dsznajder, Reactjs 
+
 
 
 Sample 1 -- shopping-cart -- ecommerce application
 
 Goals -- useHooks, remove connect, convert to functional components
 Setup --
+Needs python
+1. https://www.python.org/downloads/
+2. npm install --global --production windows-build-tools
+
+Sample 2 -- pokedex -- 
+
+Goals -- useHooks, remove connect, convert to functional components
+Setup --
+
 Needs python
 1. https://www.python.org/downloads/
 2. npm install --global --production windows-build-tools
