@@ -1,33 +1,57 @@
-import React, { Component } from 'react'
+import React, { Component, useReducer, useEffect } from 'react'
 import hardtack from 'hardtack'
 import Pokemon from '../pokemon/cnt-pokemon'
 import Search from '../search/cmp-search'
 import ga from '../../utils/ga'
 
-class Page extends Component {
-  constructor(props) {
-    this.state = {
-      searchString: '',
-      pokemonsIds: [],
-      error: null
-    }
+const initialState = {
+  searchString: '',
+  pokemonsIds: [],
+  error: null
+}
+
+const PageActions = () => {
+  const setError = (data) => { return { type: "error", data: data } }
+  const reset = (data) => { return { type: "reset", data: data } }
+  const update = (data) => { return { type: "update", data: data } }
+  return {
+    setError,
+    reset,
+    update,
   }
 
-  componentDidMount() {
-    this.props.getPokemons().then(action => {
-      if (action.error) {
-        return this.setState({
-          error: action.payload.message
-        })
-      }
+}
 
+const PageReducer = (state, action) => {
+  switch (action.type) {
+    case "error":
+      return state;
+
+    case "update":
+      return state;
+
+      case "error":
+        default:
+
+      return state;
+  }
+}
+
+const Page = (props) => {
+
+  const [state, dispatch] = useReducer(PageReducer, initialState);
+
+  useEffect(() => {
+    props.getPokemons().then(action => {
+      if (action.error) {
+        dispatch(PageActions.setError(acion.payload.message))
+      }
+        
       const searchString = hardtack.get('searchString')
-      const { pokemonsById, pokemonsAllIds } = this.props
+      const { pokemonsById, pokemonsAllIds } = props
 
       if (!searchString) {
-        return this.setState({
-          pokemonsIds: pokemonsAllIds
-        })
+        dispatch(PageActions.reset(pokemonsAllIds))
       }
 
       const pokemonsIds = pokemonsAllIds.filter(pokemonId => {
@@ -36,28 +60,27 @@ class Page extends Component {
         return pokemon.name.includes(searchString)
       })
 
-      this.setState({
-        pokemonsIds,
-        searchString
-      })
+      dispatch(PageActions.update({ids : pokemonsIds, searchString : searchString}))
     })
 
     ga.pageview(window.location.pathname + window.location.search)
-  }
+  });
 
-  handleSearch = event => {
-    const value = event.currentTarget.value.toLowerCase().trim()
-    const { pokemonsById, pokemonsAllIds } = this.props
+  const handleSearch = e => {
+    const { target, currentTarget } = e;
+
+    const value = currentTarget.value.toLowerCase().trim()
+    const { pokemonsById, pokemonsAllIds } = props
 
     hardtack.set('searchString', value, {
       maxAge: '31536000'
     })
 
     if (value === '') {
-      return this.setState({
-        pokemonsIds: pokemonsAllIds,
-        searchString: value
-      })
+      dispatch(PageActions.update)
+      
+      dispatch(PageActions.update({ids : pokemonsIds, searchString : searchString}))
+
     }
 
     const pokemonsIds = pokemonsAllIds.filter(pokemonId => {
@@ -66,38 +89,34 @@ class Page extends Component {
       return pokemon.name.includes(value)
     })
 
-    this.setState({
-      pokemonsIds,
-      searchString: value
-    })
+    dispatch(PageActions.update({ids : pokemonsIds, searchString : value}))
   }
 
-  render() {
-    const { searchString, pokemonsIds, error } = this.state
-    const { isFetched } = this.props
 
-    const pokemons = pokemonsIds.map(pokemonId => {
-      return (
-        <li className="pokemons__item" key={pokemonId}>
-          <Pokemon id={pokemonId} />
-        </li>
-      )
-    })
+  const { searchString, pokemonsIds, error } = state
+  const { isFetched } = props
 
+  const pokemons = pokemonsIds.map(pokemonId => {
     return (
-      <div className="page">
-        {error && <div className="page__error">{error}</div>}
-        <div className="page__search">
-          <Search onChange={this.handleSearch} value={searchString} />
-        </div>
-        {isFetched ? (
-          <p>Loading...</p>
-        ) : (
+      <li className="pokemons__item" key={pokemonId}>
+        <Pokemon id={pokemonId} />
+      </li>
+    )
+  })
+
+  return (
+    <div className="page">
+      {error && <div className="page__error">{error}</div>}
+      <div className="page__search">
+        <Search onChange={handleSearch} value={searchString} />
+      </div>
+      {isFetched ? (
+        <p>Loading...</p>
+      ) : (
           <ul className="pokemons">{pokemons}</ul>
         )}
-      </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default Page
